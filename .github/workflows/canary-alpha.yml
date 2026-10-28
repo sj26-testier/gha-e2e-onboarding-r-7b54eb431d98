@@ -1,0 +1,28 @@
+{
+  "name": "Canary alpha",
+  "on": {
+    "push": {
+      "branches": [
+        "canary-alpha",
+        "canary-beta"
+      ],
+      "paths": [
+        "alpha.txt"
+      ]
+    }
+  },
+  "permissions": {},
+  "jobs": {
+    "marker": {
+      "name": "Canary alpha",
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 2,
+      "steps": [
+        {
+          "name": "Prove imported body executed",
+          "run": "printf \"CANARY_COMPLETE variant=alpha event=%s sha=%s ref=%s\\n\" \"$GITHUB_EVENT_NAME\" \"$GITHUB_SHA\" \"$GITHUB_REF\""
+        }
+      ]
+    }
+  }
+}

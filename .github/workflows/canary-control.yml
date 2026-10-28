@@ -1,0 +1,24 @@
+{
+  "name": "Canary control",
+  "on": {
+    "push": {
+      "branches": [
+        "canary-*"
+      ]
+    }
+  },
+  "permissions": {},
+  "jobs": {
+    "marker": {
+      "name": "Canary control",
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 2,
+      "steps": [
+        {
+          "name": "Prove imported body executed",
+          "run": "printf \"CANARY_COMPLETE variant=control event=%s sha=%s ref=%s\\n\" \"$GITHUB_EVENT_NAME\" \"$GITHUB_SHA\" \"$GITHUB_REF\""
+        }
+      ]
+    }
+  }
+}
